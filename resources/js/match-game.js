@@ -10,8 +10,27 @@ var MatchGame = {};
  */
 
 MatchGame.generateCardValues = function () {
+ var numbers = [];
+
+ for (var i = 1; i <= 8; i++) {
+   numbers.push(i);
+   numbers.push(i);
+ }
+
+var cards = [];
+
+while (numbers.length > 0) {
+  var randomIndex = Math.floor(Math.random() * numbers.length);
+  var randomNumber = numbers.splice(randomIndex, 1)[0];
+  cards.push(randomNumber);
+}
+
+return cards;
 
 };
+
+
+
 
 /*
   Converts card values to jQuery card objects and adds them to the supplied game
