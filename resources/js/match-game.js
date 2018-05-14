@@ -36,9 +36,9 @@ MatchGame.renderCards = function(cards, $game) {
     'url(\'resources/images/Thomas.jpg\')',
     'url(\'resources/images/Jimmie.jpg\')',
     'url(\'resources/images/Patrick.jpg\')',
-    'url(\'resources/images/Kainos.png\')',
-    'url(\'resources/images/Kainos.png\')',
-    'url(\'resources/images/Kainos.png\')'];
+    'url(\'resources/images/Ravinder.jpg\')',
+    'url(\'resources/images/Marc.jpg\')',
+    'url(\'resources/images/Rhys.jpg\')'];
  var bios = [
    'Andrea',
    'Pedro',
@@ -97,8 +97,7 @@ MatchGame.flipCard = function($card, $game) {
       var card1 = flippedCards[0];
       var card2 = flippedCards[1];
       var css = {
-        backgroundColor: 'rgb(32, 64, 86)',
-        backgroundImage: 'none'
+            backgroundImage: 'none'
       }
       window.setTimeout(function() {
         card1.css(css)
