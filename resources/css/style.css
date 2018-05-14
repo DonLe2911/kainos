@@ -42,4 +42,9 @@ p {
   font-weight: 900;
   color: rgb(255, 255, 255);
   cursor: pointer;
+  background-size: cover;
+}
+
+.match {
+  opacity: .8;
 }

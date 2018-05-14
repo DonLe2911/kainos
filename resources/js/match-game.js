@@ -31,27 +31,41 @@ return cards;
 */
 MatchGame.renderCards = function(cards, $game) {
   var images = [
-    'url(\'resources/images/Kainos.png\')',
-    'url(\'resources/images/Kainos.png\')',
-    'url(\'resources/images/Kainos.png\')',
-    'url(\'resources/images/Kainos.png\')',
-    'url(\'resources/images/Kainos.png\')',
+    'url(\'resources/images/Andreea.jpg\')',
+    'url(\'resources/images/Pedro.jpg\')',
+    'url(\'resources/images/Thomas.jpg\')',
+    'url(\'resources/images/Jimmie.jpg\')',
+    'url(\'resources/images/Patrick.jpg\')',
     'url(\'resources/images/Kainos.png\')',
     'url(\'resources/images/Kainos.png\')',
     'url(\'resources/images/Kainos.png\')'];
+ var bios = [
+   'Andrea',
+   'Pedro',
+   'Thomas',
+   'Kainos',
+   'Kainos',
+   'Kainos',
+   'Kainos',
+   'Kainos'
+ ];
+
     $game.empty();
     $game.data('flippedCards', []);
   for (var j = 0; j < cards.length; j++) {
     var value = cards[j];
     var image = images[value - 1];
+    var bio = bios[value-1];
     var data = {
       value: value,
       image: image,
+      bio: bio,
       isFlipped: false
   };
-var $cardElement = $('<div class="col-xs-3 card"></div>');
-$cardElement.data(data);
-$game.append($cardElement);
+  var $cardElement = $('<div class="col-xs-3 card" data-bio="' + data.bio +'"></div>');
+
+  $cardElement.data(data);
+  $game.append($cardElement);
 }
 $('.card').click(function() {
   MatchGame.flipCard($(this), $('#game'));
@@ -71,13 +85,14 @@ MatchGame.flipCard = function($card, $game) {
   flippedCards.push($card);
   if (flippedCards.length === 2) {
     if (flippedCards[0].data('value') === flippedCards[1].data('value')) {
+      console.log(flippedCards[1].data('value'));
+      console.log(flippedCards[1].data('bio'));
       var matchCss = {
-        backgroundColor: 'rgb(153, 153, 153)',
-        backgroundImage: 'none',
+        backgroundColor: 'rgba(153, 153, 153, .6)',
         color: 'rgb(204, 204, 204)'
       };
-      flippedCards[0].css(matchCss);
-      flippedCards[1].css(matchCss);
+      flippedCards[0].css(matchCss).addClass('match');
+      flippedCards[1].css(matchCss).addClass('match');
     } else {
       var card1 = flippedCards[0];
       var card2 = flippedCards[1];
