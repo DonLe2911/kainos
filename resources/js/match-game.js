@@ -40,15 +40,14 @@ MatchGame.renderCards = function(cards, $game) {
     'url(\'resources/images/Marc.jpg\')',
     'url(\'resources/images/Rhys.jpg\')'];
  var bios = [
-   'Andrea',
+   'Andreea',
    'Pedro',
    'Thomas',
-   'Kainos',
-   'Kainos',
-   'Kainos',
-   'Kainos',
-   'Kainos'
- ];
+   'Jimmie',
+   'Patrick',
+   'Ravinder',
+   'Marc',
+   'Rhys' ];
 
     $game.empty();
     $game.data('flippedCards', []);
@@ -86,7 +85,7 @@ MatchGame.flipCard = function($card, $game) {
   if (flippedCards.length === 2) {
     if (flippedCards[0].data('value') === flippedCards[1].data('value')) {
       console.log(flippedCards[1].data('value'));
-      console.log(flippedCards[1].data('bio'));
+      $('#bios').html('<h1>Biography</h1><p>' + flippedCards[1].data('bio') + '</p>');
       var matchCss = {
         backgroundColor: 'rgba(153, 153, 153, .6)',
         color: 'rgb(204, 204, 204)'
