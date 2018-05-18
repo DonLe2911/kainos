@@ -40,14 +40,14 @@ MatchGame.renderCards = function(cards, $game) {
     'url(\'resources/images/Marc.jpg\')',
     'url(\'resources/images/Rhys.jpg\')'];
  var bios = [
-   'Andreea',
-   'Pedro',
-   'Thomas',
-   'Jimmie',
-   'Patrick',
-   'Ravinder',
-   'Marc',
-   'Rhys' ];
+   'Andreea Irimia, University of Birmingham, Placement year student',
+   'Pedro Mendonca, University of Nottingham, Graduate',
+   'Thomas Seelig, Birmingham City University, Placement year student',
+   'Jimmie Sundberg, University of Leicester, Graduate',
+   'Patrick Blakey, University of Warwick, Graduate',
+   'Ravinder Pal Singh, University of Birmingham, Placement year student',
+   'Marc-Steeven Eyeni-Kantsey, University of Birmingham, Graduate',
+   'Rhys Barrett, University of Birmingham, Placement year student' ];
 
     $game.empty();
     $game.data('flippedCards', []);
