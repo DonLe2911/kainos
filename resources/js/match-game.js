@@ -1,4 +1,29 @@
 var MatchGame = {};
+var attempts = 0;
+var flippedCount = 0;
+var count=0;
+var x;
+
+  var images = [
+    'url(\'resources/images/Andreea.jpg\')',
+    'url(\'resources/images/Pedro.jpg\')',
+    'url(\'resources/images/Thomas.jpg\')',
+    'url(\'resources/images/Jimmie.jpg\')',
+    'url(\'resources/images/Patrick.jpg\')',
+    'url(\'resources/images/Ravinder.jpg\')',
+    'url(\'resources/images/Marc.jpg\')',
+    'url(\'resources/images/Rhys.jpg\')'];
+ var bios = [
+   'Andreea Irimia, University of Birmingham, Placement year student',
+   'Pedro Mendonca, University of Nottingham, Graduate',
+   'Thomas Seelig, Birmingham City University, Placement year student',
+   'Jimmie Sundberg, University of Leicester, Graduate',
+   'Patrick Blakey, University of Warwick, Graduate',
+   'Ravinder Pal Singh, University of Birmingham, Placement year student',
+   'Marc-Steeven Eyeni-Kantsey, University of Birmingham, Graduate',
+   'Rhys Barrett, University of Birmingham, Placement year student' ];
+
+
 /*
   Sets up a new game after HTML document has loaded.
   Renders a 4x4 board of cards.
@@ -30,24 +55,6 @@ return cards;
   object.
 */
 MatchGame.renderCards = function(cards, $game) {
-  var images = [
-    'url(\'resources/images/Andreea.jpg\')',
-    'url(\'resources/images/Pedro.jpg\')',
-    'url(\'resources/images/Thomas.jpg\')',
-    'url(\'resources/images/Jimmie.jpg\')',
-    'url(\'resources/images/Patrick.jpg\')',
-    'url(\'resources/images/Ravinder.jpg\')',
-    'url(\'resources/images/Marc.jpg\')',
-    'url(\'resources/images/Rhys.jpg\')'];
- var bios = [
-   'Andreea Irimia, University of Birmingham, Placement year student',
-   'Pedro Mendonca, University of Nottingham, Graduate',
-   'Thomas Seelig, Birmingham City University, Placement year student',
-   'Jimmie Sundberg, University of Leicester, Graduate',
-   'Patrick Blakey, University of Warwick, Graduate',
-   'Ravinder Pal Singh, University of Birmingham, Placement year student',
-   'Marc-Steeven Eyeni-Kantsey, University of Birmingham, Graduate',
-   'Rhys Barrett, University of Birmingham, Placement year student' ];
 
     $game.empty();
     $game.data('flippedCards', []);
@@ -68,8 +75,21 @@ MatchGame.renderCards = function(cards, $game) {
 }
 $('.card').click(function() {
   MatchGame.flipCard($(this), $('#game'));
+  if(count == 0)
+    startTimer();
 });
 };
+
+function startTimer(){
+x=setTimeout("startTimer()",1000);
+count=count+1;
+document.getElementById("timera").innerHTML = count;
+}
+
+function stoptimer(){
+clearTimeout(x);
+}
+
 /*
   Flips over a given card and checks to see if two cards are flipped over.
   Updates styles on flipped cards depending whether they are a match or not.
@@ -78,11 +98,15 @@ MatchGame.flipCard = function($card, $game) {
   if ($card.data('isFlipped')) {
     return;
   }
+  attempts++;
+  if(attempts % 2 == 0)
+    document.getElementById('attempts').innerHTML = attempts/2;
   $card.css('background-image', $card.data('image'))
       .data('isFlipped', true);
   var flippedCards = $game.data('flippedCards');
   flippedCards.push($card);
   if (flippedCards.length === 2) {
+    flippedCount++;
     if (flippedCards[0].data('value') === flippedCards[1].data('value')) {
       console.log(flippedCards[1].data('value'));
       $('#bios').html('<h1>Biography</h1><p>' + flippedCards[1].data('bio') + '</p>');
@@ -92,6 +116,11 @@ MatchGame.flipCard = function($card, $game) {
       };
       flippedCards[0].css(matchCss).addClass('match');
       flippedCards[1].css(matchCss).addClass('match');
+
+        if ($(".match").length / 2 == bios.length) {
+            window.alert("YOU'VE WON!\n\n" + "Time: " + count + "\n\nAttempts: " + attempts/2);
+            stoptimer();
+        }
     } else {
       var card1 = flippedCards[0];
       var card2 = flippedCards[1];
